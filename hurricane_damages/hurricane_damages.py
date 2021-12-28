@@ -24,8 +24,6 @@ deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,3
 conversion = {"M": 1000000,
               "B": 1000000000}
 
-# convert string data from damages list to float numbers
-
 def damages_to_float():
   float_damages = []
   length = len(damages)
@@ -47,6 +45,23 @@ def damages_to_float():
   return float_damages
 
 # test function by updating damages
-damages.extend(["","000","0M","5M", "0.7B"])
+# damages.extend(["","000","0M","5M", "0.7B"])
+# damages_to_float()
+#print(damages_to_float())
 
-print(damages_to_float())
+# 2 
+# Create a Table
+hurricane_records = list(zip(names,months,years,max_sustained_winds,areas_affected,damages,deaths))
+#print(hurricane_records)
+
+# Create and view the hurricanes dictionary
+hurricane_dict = {}
+for record in hurricane_records:
+  values = {}
+  keys = ["Name","Month","Year","Max Sustained Wind","Areas Affected","Damage","Death"]
+  index = 0
+  for data in record:
+    values.update({keys[index]:data})
+    index += 1
+  hurricane_dict.update({record[0]:values})
+# print(hurricane_dict)
