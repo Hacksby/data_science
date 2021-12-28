@@ -38,7 +38,7 @@ def damages_to_float():
         float_num = float(damages[i][:-1])
         char = conversion[damages[i][-1]]
         if float_num > 0:
-          float_damages.append("{:,}".format((float_num) * char))
+          float_damages.append(float_num * char)
         else:
           float_damages.append('Damages not recorded')
       else:
@@ -85,12 +85,11 @@ for year in year_hurricane_dict:
   for hurricane, value in hurricane_dict.items():
     if year == value["Year"]:
       year_hurricane_dict[year].append(value)
-# print(year_hurricane_dict[1932])
+#print(year_hurricane_dict[1932])
 
 
 # 4
 # Counting Damaged Areas
-
 def how_often_affected_areas():
   affected_areas_dict = {}
   areas_list = []
@@ -177,8 +176,25 @@ def rate_mortality():
 # categorize hurricanes in new dictionary with mortality severity as key
 
 rate_mortality()
-for element in mortality_hurricane_dict:
-  print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-  print(element, mortality_hurricane_dict[element])
+# for element in mortality_hurricane_dict:
+#  print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+#  print(element, mortality_hurricane_dict[element])
 
+
+# 8 Calculating Hurricane Maximum Damage
+
+def hurricane_max_damage():
+  max_damage = -1
+  possible_hurricanes = []
+  for name, value in hurricane_dict.items():
+    number = value["Damages"]
+    if type(number) == float:
+      if max_damage < number:
+        max_damage = number
+        possible_hurricanes.append(name)
+  print("The most destructive hurricane was {hurricane}, with a cost of {X} $".format(hurricane=possible_hurricanes[-1],X=max_damage))
+
+
+# find highest damage inducing hurricane and its total cost
+hurricane_max_damage()
 
