@@ -106,7 +106,24 @@ def how_often_affected_areas():
       i += 1
   return affected_areas_dict
 
-# count_affected_areas = how_often_affected_areas()
-# print(count_affected_areas)
+# create dictionary of areas to store the number of hurricanes involved in
 
+count_affected_areas = how_often_affected_areas()
+#print(count_affected_areas)
+
+# 5 
+# Calculating Maximum Hurricane Count
+
+# find most frequently affected area and the number of hurricanes involved in
+
+def max_hurricane_count():
+  max_value = -1
+  most_affected_places = []
+  for area,count in count_affected_areas.items():
+    if count > max_value:
+      max_value = count
+      most_affected_places.append(area)
+  max_place = most_affected_places[-1]
+  print("The most affected area was {area}, with {max} hurricanes.".format(area=max_place,max=max_value))
+max_hurricane_count()
 
