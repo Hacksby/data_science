@@ -21,6 +21,8 @@ deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,3
 
 # 1
 # Update Recorded Damages
+
+
 conversion = {"M": 1000000,
               "B": 1000000000}
 
@@ -45,23 +47,44 @@ def damages_to_float():
   return float_damages
 
 # test function by updating damages
+
 # damages.extend(["","000","0M","5M", "0.7B"])
-# damages_to_float()
+float_damages_list = damages_to_float()
 #print(damages_to_float())
+
 
 # 2 
 # Create a Table
-hurricane_records = list(zip(names,months,years,max_sustained_winds,areas_affected,damages,deaths))
+
+hurricane_records = list(zip(names,months,years,max_sustained_winds,areas_affected,float_damages_list,deaths))
 #print(hurricane_records)
 
 # Create and view the hurricanes dictionary
+
 hurricane_dict = {}
 for record in hurricane_records:
   values = {}
-  keys = ["Name","Month","Year","Max Sustained Wind","Areas Affected","Damage","Death"]
+  keys = ["Name","Month","Year","Max Sustained Wind","Areas Affected","Damages","Deaths"]
   index = 0
   for data in record:
     values.update({keys[index]:data})
     index += 1
   hurricane_dict.update({record[0]:values})
-# print(hurricane_dict)
+#print(hurricane_dict)
+
+
+# 3
+# Organizing by Year
+
+year_hurricane_dict = {}
+for hurricane, value in hurricane_dict.items():
+  year_hurricane_dict.update({value["Year"]:[]})
+# print(year_hurricane_dict)
+# create a new dictionary of hurricanes with year and key
+for year in year_hurricane_dict:
+  for hurricane, value in hurricane_dict.items():
+    if year == value["Year"]:
+      year_hurricane_dict[year].append(value)
+# print(year_hurricane_dict[1932])
+
+
