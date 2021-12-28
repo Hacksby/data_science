@@ -142,3 +142,43 @@ def deadliest_hurricane():
   print("The deadliest hurricane was {hurricane} with {X} deaths.".format(hurricane=possible_hurricanes[-1],X=max_mortality))
 
 # find highest mortality hurricane and the number of deaths
+
+#deadliest_hurricane()
+
+
+# 7
+# Rating Hurricanes by Mortality
+
+mortality_scale = {0: 0,
+                   1: 100,
+                   2: 500,
+                   3: 1000,
+                   4: 10000}
+                   
+mortality_hurricane_dict = {}
+def rate_mortality():
+  mortality_rates_list = []
+  for key in mortality_scale:
+    mortality_hurricane_dict.update({key:[]})
+  for key,value in hurricane_dict.items():
+    deaths = value["Deaths"]
+    rated = False
+    for rating, rating_values in mortality_scale.items():
+      if rated == False:
+        if rating == 4:
+          mortality_hurricane_dict[4].append({key:value})
+          rated = True
+        elif deaths < mortality_scale[rating + 1] and deaths > rating_values:
+          mortality_hurricane_dict[rating].append({key:value})
+          rated = True
+  
+  #print(mortality_rates_list)
+
+# categorize hurricanes in new dictionary with mortality severity as key
+
+rate_mortality()
+for element in mortality_hurricane_dict:
+  print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+  print(element, mortality_hurricane_dict[element])
+
+
