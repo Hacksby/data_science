@@ -125,5 +125,20 @@ def max_hurricane_count():
       most_affected_places.append(area)
   max_place = most_affected_places[-1]
   print("The most affected area was {area}, with {max} hurricanes.".format(area=max_place,max=max_value))
-max_hurricane_count()
+#max_hurricane_count()
 
+
+# 6
+# Calculating the Deadliest Hurricane
+def deadliest_hurricane():
+  max_mortality = -1
+  possible_hurricanes = []
+  for record in hurricane_dict.values():
+    name = record["Name"]
+    deaths = record["Deaths"]
+    if deaths > max_mortality:
+      max_mortality = deaths
+      possible_hurricanes.append(name)
+  print("The deadliest hurricane was {hurricane} with {X} deaths.".format(hurricane=possible_hurricanes[-1],X=max_mortality))
+
+# find highest mortality hurricane and the number of deaths
