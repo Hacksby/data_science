@@ -156,7 +156,6 @@ mortality_scale = {0: 0,
                    
 mortality_hurricane_dict = {}
 def rate_mortality():
-  mortality_rates_list = []
   for key in mortality_scale:
     mortality_hurricane_dict.update({key:[]})
   for key,value in hurricane_dict.items():
@@ -170,8 +169,7 @@ def rate_mortality():
         elif deaths < mortality_scale[rating + 1] and deaths > rating_values:
           mortality_hurricane_dict[rating].append({key:value})
           rated = True
-  
-  #print(mortality_rates_list)
+
 
 # categorize hurricanes in new dictionary with mortality severity as key
 
@@ -196,5 +194,38 @@ def hurricane_max_damage():
 
 
 # find highest damage inducing hurricane and its total cost
-hurricane_max_damage()
+# hurricane_max_damage()
 
+
+# 9
+# Rating Hurricanes by Damage
+damage_scale = {0: 0,
+                1: 100000000,
+                2: 1000000000,
+                3: 10000000000,
+                4: 50000000000}
+
+                   
+damages_hurricane_dict = {}
+def rate_damages():
+  for key in damage_scale:
+    damages_hurricane_dict.update({key:[]})
+  for key,value in hurricane_dict.items():
+    if not value["Damages"] == "Damages not recorded":
+      damages = value["Damages"]
+      rated = False
+      for rating, rating_values in damage_scale.items():
+        if rated == False:
+          if rating == 4:
+            damages_hurricane_dict[4].append({key:value})
+            rated = True
+          elif damages < damage_scale[rating + 1] and damages > rating_values:
+            damages_hurricane_dict[rating].append({key:value})
+            rated = True
+
+rate_damages() 
+#for element in mortality_hurricane_dict:
+ # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+ # print(element, damages_hurricane_dict[element])
+ #print(damages_hurricane_dict)
+# categorize hurricanes in new dictionary with damage severity as key
