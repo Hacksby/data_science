@@ -88,3 +88,25 @@ for year in year_hurricane_dict:
 # print(year_hurricane_dict[1932])
 
 
+# 4
+# Counting Damaged Areas
+
+def how_often_affected_areas():
+  affected_areas_dict = {}
+  areas_list = []
+  for value in hurricane_dict.values():
+    for area in value["Areas Affected"]:
+      areas_list.append(area)
+  for area in areas_list:
+    count = areas_list.count(area)
+    affected_areas_dict.update({area:count})
+    i = 0
+    while i < count:
+      areas_list.remove(area)
+      i += 1
+  return affected_areas_dict
+
+# count_affected_areas = how_often_affected_areas()
+# print(count_affected_areas)
+
+
